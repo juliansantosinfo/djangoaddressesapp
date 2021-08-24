@@ -1,130 +1,124 @@
 from django.db import models
-from django.urls.base import reverse
-from djangosimplemodels import SimpleAddress
+from django.utils.translation import gettext, gettext_lazy as _
+
 
 # Create your models here.
+
 
 class Region(models.Model):
 
     class Meta:
-        verbose_name = 'Região'
-        verbose_name_plural = 'Regiões'
+        verbose_name = _('Region')
+        verbose_name_plural = _('Regions')
 
     name = models.CharField(
-        verbose_name="Nome", 
+        verbose_name=_('Name'),
         max_length=254
     )
 
     acronym = models.CharField(
-        verbose_name="Sigla", 
+        verbose_name=_('Acronym'),
         max_length=2
     )
 
     def __str__(self):
         return self.name
-
-    def get_absolute_url(self):
-        return reverse("region_detail", kwargs={"pk": self.pk})
 
 
 class State(models.Model):
 
     class Meta:
-        verbose_name = 'Estado'
-        verbose_name_plural = 'Estados'
+        verbose_name = _('State')
+        verbose_name_plural = _('States')
 
     name = models.CharField(
-        verbose_name="Nome", 
+        verbose_name=_('Name'),
         max_length=254
     )
 
     acronym = models.CharField(
-        verbose_name="Sigla", 
+        verbose_name=_('Acronym'),
         max_length=2
     )
 
     region = models.ForeignKey(
-        "Region", 
-        verbose_name="Região", 
+        'Region',
+        verbose_name=_('Region'),
         on_delete=models.CASCADE
     )
 
     def __str__(self):
         return self.name
-
-    def get_absolute_url(self):
-        return reverse("state_detail", kwargs={"pk": self.pk})
 
 
 class City(models.Model):
 
     class Meta:
-        verbose_name = 'Município'
-        verbose_name_plural = 'Municípios'
+        verbose_name = _('City')
+        verbose_name_plural = _('Cities')
 
     name = models.CharField(
-        verbose_name="Nome", 
+        verbose_name=_('Name'),
         max_length=254
     )
 
     state = models.ForeignKey(
-        "State", 
-        verbose_name="", 
+        'State',
+        verbose_name=_('State'),
         on_delete=models.CASCADE
     )
 
     def __str__(self):
         return self.name
 
-    def get_absolute_url(self):
-        return reverse("city_detail", kwargs={"pk": self.pk})
 
-
-class Address(SimpleAddress):
+class Address(models.Model):
 
     class Meta:
-        verbose_name = 'Endereço'
-        verbose_name_plural = 'Endereços'
+        verbose_name = _('Address')
+        verbose_name_plural = _('Addresses')
 
     zipcode = models.CharField(
-        verbose_name="CEP",
+        verbose_name=_('Zipcode'),
         max_length=8,
         blank=True,
         null=True
     )
 
     state = models.ForeignKey(
-        "State", 
-        verbose_name="Estado", 
+        'State',
+        verbose_name=_('State'),
         on_delete=models.CASCADE,
         blank=True,
         null=True
     )
 
     city = models.ForeignKey(
-        "City", 
-        verbose_name="Município", 
+        'City',
+        verbose_name=_('City'),
         on_delete=models.CASCADE,
         blank=True,
         null=True
     )
 
     district = models.CharField(
-        verbose_name="Bairro",
+        verbose_name=_('District'),
         max_length=254
     )
 
     address = models.CharField(
-        verbose_name="Endereço",
+        verbose_name=_('Address'),
         max_length=254
     )
 
     number = models.IntegerField(
-        verbose_name="Número",
+        verbose_name=_('Number'),
+    )
+
+    complement = models.CharField(
+        verbose_name=_('Complement'),
+        max_length=254
     )
 
     def __str__(self):
         return self.address
-
-    def get_absolute_url(self):
-        return reverse("address_detail", kwargs={"pk": self.pk})

@@ -1,6 +1,7 @@
 from django.apps import AppConfig
+from django.utils.translation import gettext, gettext_lazy as _
 
 
-class DjangoAddressesApp(AppConfig):
+class DefaultApp(AppConfig):
     name = 'djangoaddressesapp'
-    verbose_name = 'Endereços'
+    verbose_name = _('Addresses')
