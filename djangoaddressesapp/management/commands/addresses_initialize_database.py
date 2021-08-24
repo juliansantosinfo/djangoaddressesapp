@@ -8,16 +8,16 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         
         # Import Regions
-        self.stdout.write(self.style.NOTICE('Initializing regions import by IBGE api.'))
+        self.stdout.write(self.style.NOTICE('Initializing Import of Regions by IBGE API.'))
         import_regions()
-        self.stdout.write(self.style.SUCCESS('Completed regions import by IBGE api.'))
+        self.stdout.write(self.style.SUCCESS('Finalized import of Regions.'))
 
         # Import States
-        self.stdout.write(self.style.NOTICE('Initializing states import by IBGE api.'))
+        self.stdout.write(self.style.NOTICE('Initializing Import of States by IBGE API.'))
         import_state()
-        self.stdout.write(self.style.SUCCESS('Completed cities import by IBGE api.'))
+        self.stdout.write(self.style.SUCCESS('Finalized import of States.'))
 
         # Import Cities
-        self.stdout.write(self.style.NOTICE('Initializing states import by IBGE api.'))
+        self.stdout.write(self.style.NOTICE('Initializing Import of Cities by IBGE API.'))
         import_cities()
-        self.stdout.write(self.style.SUCCESS('Completed cities import by IBGE api.'))
+        self.stdout.write(self.style.SUCCESS('Finalized import of Cities.'))
