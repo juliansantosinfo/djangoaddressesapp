@@ -1,6 +1,6 @@
 import requests
 from django.core.management.base import BaseCommand, CommandError
-from djangoaddressesapp import import_regions, import_state, import_cities
+from djangoaddressesapp.models import import_regions, import_state, import_cities
 
 class Command(BaseCommand):
     help = 'Import regions, states and cities by IBGE api'

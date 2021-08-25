@@ -118,7 +118,9 @@ class Address(models.Model):
 
     complement = models.CharField(
         verbose_name=_('Complement'),
-        max_length=254
+        max_length=254,
+        blank=True,
+        null=True
     )
 
     def __str__(self):
